@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="LiveChartsCore.SkiaSharpView">
+        <HintPath>..\..\..\.nuget\packages\livechartscore.skiasharpview\2.0.0-rc4.5\lib\net8.0\LiveChartsCore.SkiaSharpView.dll</HintPath>
+      </Reference>
+      <Reference Include="LiveChartsCore.SkiaSharpView.WPF">
+        <HintPath>..\..\..\.nuget\packages\livechartscore.skiasharpview.wpf\2.0.0-rc4.5\lib\netcoreapp3.1\LiveChartsCore.SkiaSharpView.WPF.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
+      <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
+    </ItemGroup>
+
+</Project>

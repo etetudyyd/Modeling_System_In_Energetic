@@ -1,0 +1,28 @@
+﻿<Window x:Class="Modeling_System_In_Energetic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        Title="Графіки Сонячних Параметрів" Height="600" Width="900">
+    <Grid>
+        <!-- Визначення 3 стовпців для графіків -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Визначення 1 рядка для графіків -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Графік Зенітного кута -->
+        <oxy:PlotView Model="{Binding ZenithPlotModel}" Grid.Row="0" Grid.Column="0"/>
+
+        <!-- Графік Азимутального кута -->
+        <oxy:PlotView Model="{Binding AzimuthPlotModel}" Grid.Row="0" Grid.Column="1"/>
+
+        <!-- Графік Глобального випромінювання -->
+        <oxy:PlotView Model="{Binding IrradiancePlotModel}" Grid.Row="0" Grid.Column="2"/>
+    </Grid>
+</Window>
