@@ -9,9 +9,7 @@
       "Modeling_System_In_Energetic/1.0.0": {
         "dependencies": {
           "OxyPlot.Core": "2.2.0",
-          "OxyPlot.Wpf": "2.2.0",
-          "LiveChartsCore.SkiaSharpView": "2.0.0.0",
-          "LiveChartsCore.SkiaSharpView.WPF": "2.0.0.0"
+          "OxyPlot.Wpf": "2.2.0"
         },
         "runtime": {
           "Modeling_System_In_Energetic.dll": {}
@@ -47,22 +45,6 @@
             "fileVersion": "2.2.0.0"
           }
         }
-      },
-      "LiveChartsCore.SkiaSharpView/2.0.0.0": {
-        "runtime": {
-          "LiveChartsCore.SkiaSharpView.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
-          }
-        }
-      },
-      "LiveChartsCore.SkiaSharpView.WPF/2.0.0.0": {
-        "runtime": {
-          "LiveChartsCore.SkiaSharpView.WPF.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
-          }
-        }
       }
     }
   },
@@ -92,16 +74,6 @@
       "sha512": "sha512-JoOD/feTOlKFmgXqeTNrl4Ze0i0L6WizPapNw9pXwot+cnI0qhFgYv3tFjlSdu51hZw0EgmcgeRXMtm5bkueYA==",
       "path": "oxyplot.wpf.shared/2.2.0",
       "hashPath": "oxyplot.wpf.shared.2.2.0.nupkg.sha512"
-    },
-    "LiveChartsCore.SkiaSharpView/2.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LiveChartsCore.SkiaSharpView.WPF/2.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

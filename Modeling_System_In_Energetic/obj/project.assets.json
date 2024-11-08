@@ -126,24 +126,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\xakod\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\dimar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xakod\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
+      "projectUniqueName": "C:\\Users\\dimar\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
       "projectName": "Modeling_System_In_Energetic",
-      "projectPath": "C:\\Users\\xakod\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
-      "packagesPath": "C:\\Users\\xakod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xakod\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\obj\\",
+      "projectPath": "C:\\Users\\dimar\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
+      "packagesPath": "C:\\Users\\dimar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dimar\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\xakod\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\dimar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -151,6 +146,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -197,7 +193,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

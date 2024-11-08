@@ -8,29 +8,37 @@ namespace Modeling_System_In_Energetic
 {
     public partial class MainWindow : Window
     {
-        public PlotModel ZenithPlotModel { get; set; }
-        public PlotModel AzimuthPlotModel { get; set; }
-        public PlotModel IrradiancePlotModel { get; set; }
+        public PlotModel[] ZenithPlotModels { get; set; }
+        public PlotModel[] AzimuthPlotModels { get; set; }
+        public PlotModel[] IrradiancePlotModels { get; set; }
 
-        private double latitude = 50.0; // Географічна широта (наприклад, 50° для України)
-        private int dayOfYear = 172; // День року (наприклад, 172 для 21 червня - день літнього сонцестояння)
+        private double latitude = 50.0;
+        private int[] daysOfYear = { 23, 112, 204, 295 }; 
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Створення графіків
-            ZenithPlotModel = CreateZenithPlot();
-            AzimuthPlotModel = CreateAzimuthPlot();
-            IrradiancePlotModel = CreateIrradiancePlot();
+            // Ініціалізація масивів моделей
+            ZenithPlotModels = new PlotModel[4];
+            AzimuthPlotModels = new PlotModel[4];
+            IrradiancePlotModels = new PlotModel[4];
 
-            // Прив'язка графіків до моделей у XAML
+            // Створення графіків для кожного місяця
+            for (int i = 0; i < daysOfYear.Length; i++)
+            {
+                ZenithPlotModels[i] = CreateZenithPlot(daysOfYear[i]);
+                AzimuthPlotModels[i] = CreateAzimuthPlot(daysOfYear[i]);
+                IrradiancePlotModels[i] = CreateIrradiancePlot(daysOfYear[i]);
+            }
+
+            // Прив'язка моделей до DataContext для XAML
             this.DataContext = this;
         }
 
-        private PlotModel CreateZenithPlot()
+        private PlotModel CreateZenithPlot(int dayOfYear)
         {
-            var model = new PlotModel { Title = "Зенітний кут" };
+            var model = new PlotModel { Title = "Зенітний кут - День " + dayOfYear };
 
             var series = new LineSeries
             {
@@ -40,34 +48,22 @@ namespace Modeling_System_In_Energetic
 
             for (int hour = 0; hour < 24; hour++)
             {
-                double zenithAngle = CalculateZenithAngle(hour);
+                double zenithAngle = CalculateZenithAngle(hour, dayOfYear);
                 series.Points.Add(new DataPoint(hour, zenithAngle));
             }
 
             model.Series.Add(series);
-
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 90, Title = "Кут (градуси)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Left, Minimum = 0, Maximum = 90, Title = "Кут (градуси)" });
 
             return model;
         }
 
-        private double CalculateZenithAngle(int hour)
+        private PlotModel CreateAzimuthPlot(int dayOfYear)
         {
-            double declination = 23.45 * Math.Sin((360.0 / 365.0) * (dayOfYear - 81) * Math.PI / 180); // Деклінація
-            double hourAngle = (hour - 12) * 15; // Годинний кут в градусах
-
-            // Формула для обчислення зенітного кута
-            double zenithCos = Math.Sin(latitude * Math.PI / 180) * Math.Sin(declination * Math.PI / 180) +
-                               Math.Cos(latitude * Math.PI / 180) * Math.Cos(declination * Math.PI / 180) * Math.Cos(hourAngle * Math.PI / 180);
-            double zenithAngle = Math.Acos(zenithCos) * 180 / Math.PI;
-
-            return zenithAngle;
-        }
-
-        private PlotModel CreateAzimuthPlot()
-        {
-            var model = new PlotModel { Title = "Азимутальний кут" };
+            var model = new PlotModel { Title = "Азимутальний кут - День " + dayOfYear };
 
             var series = new LineSeries
             {
@@ -77,37 +73,22 @@ namespace Modeling_System_In_Energetic
 
             for (int hour = 0; hour < 24; hour++)
             {
-                double azimuthAngle = CalculateAzimuthAngle(hour);
+                double azimuthAngle = CalculateAzimuthAngle(hour, dayOfYear);
                 series.Points.Add(new DataPoint(hour, azimuthAngle));
             }
 
             model.Series.Add(series);
-
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 360, Title = "Азимут (градуси)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Left, Minimum = 0, Maximum = 360, Title = "Азимут (градуси)" });
 
             return model;
         }
 
-        private double CalculateAzimuthAngle(int hour)
+        private PlotModel CreateIrradiancePlot(int dayOfYear)
         {
-            double declination = 23.45 * Math.Sin((360.0 / 365.0) * (dayOfYear - 81) * Math.PI / 180);
-            double hourAngle = (hour - 12) * 15;
-            double zenithAngle = CalculateZenithAngle(hour);
-
-            // Формула для азимутального кута
-            double sinAzimuth = Math.Cos(declination * Math.PI / 180) * Math.Sin(hourAngle * Math.PI / 180) / Math.Sin(zenithAngle * Math.PI / 180);
-            double azimuthAngle = Math.Asin(sinAzimuth) * 180 / Math.PI;
-
-            if (hour > 12)
-                azimuthAngle = 180 - azimuthAngle;
-
-            return azimuthAngle;
-        }
-
-        private PlotModel CreateIrradiancePlot()
-        {
-            var model = new PlotModel { Title = "Глобальне випромінювання" };
+            var model = new PlotModel { Title = "Глобальне випромінювання - День " + dayOfYear };
 
             var series = new LineSeries
             {
@@ -117,24 +98,52 @@ namespace Modeling_System_In_Energetic
 
             for (int hour = 0; hour < 24; hour++)
             {
-                double irradiance = CalculateIrradiance(hour);
+                double irradiance = CalculateIrradiance(hour, dayOfYear);
                 series.Points.Add(new DataPoint(hour, irradiance));
             }
 
             model.Series.Add(series);
-
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 1000, Title = "Випромінювання (Вт/м²)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Bottom, Minimum = 0, Maximum = 24, Title = "Час (година)" });
+            model.Axes.Add(new LinearAxis
+                { Position = AxisPosition.Left, Minimum = 0, Maximum = 1000, Title = "Випромінювання (Вт/м²)" });
 
             return model;
         }
 
-        private double CalculateIrradiance(int hour)
+        private double CalculateZenithAngle(int hour, int dayOfYear)
         {
-            double zenithAngle = CalculateZenithAngle(hour);
-            double maxIrradiance = 1000; // Максимальне випромінювання на квадратний метр
+            double declination = 23.45 * Math.Sin((360.0 / 365.0) * (dayOfYear - 81) * Math.PI / 180);
+            double hourAngle = (hour - 12) * 15;
+            double zenithCos = Math.Sin(latitude * Math.PI / 180) * Math.Sin(declination * Math.PI / 180) +
+                               Math.Cos(latitude * Math.PI / 180) * Math.Cos(declination * Math.PI / 180) *
+                               Math.Cos(hourAngle * Math.PI / 180);
+            double zenithAngle = Math.Acos(zenithCos) * 180 / Math.PI;
 
-            // Випромінювання залежить від зенітного кута
+            return zenithAngle;
+        }
+
+        private double CalculateAzimuthAngle(int hour, int dayOfYear)
+        {
+            double declination = 23.45 * Math.Sin((360.0 / 365.0) * (dayOfYear - 81) * Math.PI / 180);
+            double hourAngle = (hour - 12) * 15;
+            double zenithAngle = CalculateZenithAngle(hour, dayOfYear);
+
+            double sinAzimuth = Math.Cos(declination * Math.PI / 180) * Math.Sin(hourAngle * Math.PI / 180) /
+                                Math.Sin(zenithAngle * Math.PI / 180);
+            double azimuthAngle = Math.Asin(sinAzimuth) * 180 / Math.PI;
+
+            if (hour > 12)
+                azimuthAngle = 180 - azimuthAngle;
+
+            return azimuthAngle;
+        }
+
+        private double CalculateIrradiance(int hour, int dayOfYear)
+        {
+            double zenithAngle = CalculateZenithAngle(hour, dayOfYear);
+            double maxIrradiance = 1000;
+
             return maxIrradiance * Math.Max(0, Math.Cos(zenithAngle * Math.PI / 180));
         }
     }

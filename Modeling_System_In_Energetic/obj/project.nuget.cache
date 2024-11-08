@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "yVJfcDGYdqY=",
+  "dgSpecHash": "qY/n1e8yBZ4vpMfKb4K0+nvQLjSggOnjyVl1kN/bi6Kf5IV58meyOMoN/7veI+dP+6p2+cTMiJQf0RQh9j4CjA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\xakod\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
+  "projectFilePath": "C:\\Users\\dimar\\RiderProjects\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic\\Modeling_System_In_Energetic.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\xakod\\.nuget\\packages\\oxyplot.core\\2.2.0\\oxyplot.core.2.2.0.nupkg.sha512",
-    "C:\\Users\\xakod\\.nuget\\packages\\oxyplot.wpf\\2.2.0\\oxyplot.wpf.2.2.0.nupkg.sha512",
-    "C:\\Users\\xakod\\.nuget\\packages\\oxyplot.wpf.shared\\2.2.0\\oxyplot.wpf.shared.2.2.0.nupkg.sha512"
+    "C:\\Users\\dimar\\.nuget\\packages\\oxyplot.core\\2.2.0\\oxyplot.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\dimar\\.nuget\\packages\\oxyplot.wpf\\2.2.0\\oxyplot.wpf.2.2.0.nupkg.sha512",
+    "C:\\Users\\dimar\\.nuget\\packages\\oxyplot.wpf.shared\\2.2.0\\oxyplot.wpf.shared.2.2.0.nupkg.sha512"
   ],
   "logs": []
 }
